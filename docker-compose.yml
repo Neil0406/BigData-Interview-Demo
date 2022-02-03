@@ -1,0 +1,47 @@
+version: "3.6"
+services:
+  nginx:
+    container_name: big_data_interview_nginx
+    build: ./nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./big_data_interview_demo:/project
+      - ./log:/var/log/nginx
+    depends_on:
+      - big_data_interview_django
+    networks:
+      - big_data_interview_net
+
+  big_data_interview_django:
+    container_name: big_data_interview_django
+    build: ./big_data_interview_demo
+    volumes:
+      - ./big_data_interview_demo:/project
+    depends_on:
+      - big_data_interview_mariadb
+    networks:
+        - big_data_interview_net
+    restart: always
+
+  big_data_interview_mariadb:
+    container_name: big_data_interview_mariadb
+    image: mariadb:10.7.1
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_DATABASE: 'big_data_interview'
+    networks:
+      - big_data_interview_net
+    volumes:
+      - ./sql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    restart: always
+
+    
+volumes:
+    big_data_interview_net:
+networks:
+  big_data_interview_net:
+    driver: bridge
