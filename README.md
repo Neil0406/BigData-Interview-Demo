@@ -1,5 +1,4 @@
 ## Big Data Interview Demo
----
 ## 使用方式 :
 
 #### 1. 下載專案
@@ -24,15 +23,12 @@ http://127.0.0.1/swagger/
 email : demo@gmail.com
 passwoed : 123456
 ```
----
----
 ## 透過Swagger操作API:
 ```
 1. 透過Swagger可直接對API進行操作，並且測試。
 2. Swagger內使用帳號登入權限，無需另外取得Token。
 ```
----
----
+
 ## 透過程式操作API:
 ### 1. 取得 Access Token
 
